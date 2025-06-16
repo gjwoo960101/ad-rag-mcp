@@ -1,0 +1,43 @@
+{
+    // Basic
+    "name": "Rag-Mcp Dev Container",
+    "dockerComposeFile": "docker-compose.dev.yml",
+    "service": "workspace",
+    "workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
+    // Featuring
+    "features": {
+        "ghcr.io/devcontainers-contrib/features/projen:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "nodeGypDependencies": true,
+            "version": "lts"
+        }
+    },
+    // Custom
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "PKief.material-icon-theme",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "wayou.vscode-todo-highlight",
+                "mhutchie.git-graph",
+                "github.vscode-github-actions",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "cursor.mcp.enabled": true,
+                "cursor.mcp.inherit": true
+            }
+        }
+    },
+    // Container Env
+    "containerEnv": {
+        "CURSOR_USER_CONFIG_DIR": "/home/vscode/.config/cursor",
+        "CURSOR_GLOBAL_CONFIG_DIR": "/home/vscode/.cursor"
+    },
+    // LifeCycles
+    "initializeCommand": "bash ./.devcontainer/commands/initializeCommand.sh ${localWorkspaceFolder} ${containerWorkspaceFolder} ${localWorkspaceFolderBasename} ${containerWorkspaceFolderBasename}",
+    "postCreateCommand": "bash ./.devcontainer/commands/postCreateCommand.sh"
+}
